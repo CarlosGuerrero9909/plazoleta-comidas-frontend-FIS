@@ -1,0 +1,15 @@
+.home-header {
+  background-image: url('https://d100mj7v0l85u5.cloudfront.net/s3fs-public/2023-03/marca-de-comidas.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.home-header h1 {
+  color: #fff;
+  font-size: 48px;
+  text-align: center;
+}
