@@ -2,9 +2,9 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import './App.css';
 
-import Home from './vistas/home/Home';
-import Login from './vistas/login/Login';
-import Signup from './vistas/signup/Signup';
+import Home from './pages/home/Home';
+import Login from './pages/login/Login';
+import Register from './pages/register/Register';
 
 function App() {
   return (
@@ -14,15 +14,17 @@ function App() {
         <div className="navbar-links">
           <Link className="navbar-link" to="/">Inicio</Link>
           <Link className="navbar-link" to="/login">Iniciar sesión</Link>
-          <Link className="navbar-link" to="/signup">Registrarse</Link>
+          <Link className="navbar-link" to="/register">Registrarse</Link>
         </div>
       </nav>
-
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-      </Routes>
+      
+      <div className='App'>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+        </Routes>
+      </div>
     </Router>
   );
 }

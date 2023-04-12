@@ -1,11 +1,10 @@
 import React from 'react';
-import './Home.css';
 
 function Home() {
   return (
     <div>
       <section className="home-header">
-        <h1>Bienvenido a Plazoleta de Comidas</h1>
+        <h1>Bienvenido a la Plazoleta de Comidas</h1>
       </section>
       <div className="container">
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lobortis augue massa, in volutpat orci bibendum vel. Aliquam aliquam mi euismod neque bibendum, ut finibus nisi eleifend. Donec eget elit vel elit fringilla vehicula. Praesent dapibus, eros vitae pretium venenatis, eros nibh auctor ipsum, a feugiat justo ipsum at magna. In consequat dui quis varius tristique. Fusce ultrices tincidunt velit ac consectetur. Proin scelerisque diam vel ultricies iaculis.</p>

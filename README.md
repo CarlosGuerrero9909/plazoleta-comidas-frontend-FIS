@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -73,3 +74,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 # plazoleta-comidas-frontend-FIS
 Proyecto de Fundamentos de ingenieria de software
 >>>>>>> cd5fa23623b64502293b421ee1f33f03f6269ffa
+=======
+# plazoleta-comidas-frontend-FIS
+Proyecto de Fundamentos de ingenieria de software
+>>>>>>> d73ae8102e433f7a694b69f2fb138b53c6e9d807

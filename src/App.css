@@ -1,16 +1,66 @@
+.App {
+  text-align: center;
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  color: #FD8451;
+  background-image: linear-gradient(to bottom right, #FDFCFB, #E2D1C3);
+}
+
+.auth-form-container, .login-form, .register-form {
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (min-width: 600px) {
+  .auth-form-container {
+    padding: 6rem;
+    border: 1px solid #FD8451;
+    border-radius: 10px;
+    margin: 0.5rem;
+  }
+
+  .login-form, .register-form {
+    width: 15rem;
+  }
+}
+
+label {
+  text-align: left;
+  padding: 0.25rem 0;
+}
+
+input, select {
+  margin: 0.5rem 0;
+  padding: 1rem;
+  border: none;
+  border-radius: 10px;
+  background-color: white;
+}
+
+button {
+  border: none;
+  background-color: #FD8451;
+  padding: 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  color: #7439db;
+}
+
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-  background-color: #fafafa;
+  background-color: #FD8451;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
 }
 
 .navbar-logo {
   font-size: 24px;
   font-weight: bold;
-  color: #333;
+  color: #FDFCFB;
   text-decoration: none;
 }
 
@@ -20,10 +70,26 @@
 
 .navbar-link {
   margin-left: 20px;
-  color: #333;
+  color: #FDFCFB;
   text-decoration: none;
 }
 
 .navbar-link:hover {
   color: #666;
+}
+
+.home-header {
+  background-image: url('https://d100mj7v0l85u5.cloudfront.net/s3fs-public/2023-03/marca-de-comidas.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.home-header h1 {
+  color: #FDFCFB;
+  font-size: 48px;
+  text-align: center;
 }
