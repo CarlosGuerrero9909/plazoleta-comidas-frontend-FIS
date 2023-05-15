@@ -19,8 +19,8 @@ function Navbar() {
             <Link className="navbar-logo" to="/">Plazoleta de Comidas</Link>
             <div className="navbar-links">
               <Link onClick={logout} className="navbar-link" to="/Login">Cerrar sesión</Link>
-              <Link className="navbar-link" to="/Login">Registrar AdminRestaurante</Link>
-              <Link className="navbar-link" to="/Login">Registrar Restaurante</Link>
+              <Link className="navbar-link" to="/RegistrarAdminRestaurante">Registrar AdminRestaurante</Link>
+              <Link className="navbar-link" to="/RegistrarRestaurante">Registrar Restaurante</Link>
             </div>
           </nav>
           :
@@ -31,6 +31,7 @@ function Navbar() {
               <Link onClick={logout} className="navbar-link" to="/Login">Cerrar sesión</Link>
               <Link className="navbar-link" to="/Login">Registrar menu</Link>
               <Link className="navbar-link" to="/Login">Registrar producto</Link>
+              <Link className="navbar-link" to="/Login">Registrar sede</Link>
             </div>
           </nav>
           :

@@ -6,7 +6,9 @@ import Navbar from './components/navbar/Navbar';
 import Home from './pages/home/Home';
 import Login from './pages/login/Login';
 import Register from './pages/register/Register';
-import AdminRotonda from './pages/adminRotonda/AdminRotonda'
+import AdminRotonda from './pages/adminRotonda/AdminRotonda';
+import RegistrarAdminRestaurante from './pages/adminRotonda/RegistrarAdminRestaurante'
+import RegistrarRestaurante from './pages/adminRotonda/RegistrarRestaurante'
 import AdminRestaurante from './pages/adminRestaurante/AdminRestaurante'
 import Cliente from './pages/cliente/Cliente'
 
@@ -26,6 +28,8 @@ function App() {
           <Route path="/Login" element={<Login sesion={sesion}/>} />
           <Route path="/Register" element={<Register />} />
           <Route path='/AdminRotonda/*' element={<AdminRotonda />} />
+            <Route path="RegistrarAdminRestaurante" element={<RegistrarAdminRestaurante />} />
+            <Route path="RegistrarRestaurante" element={<RegistrarRestaurante />} />
           <Route path='/AdminRestaurante/*' element={<AdminRestaurante />} />
           <Route path='/Cliente/*' element={<Cliente />} />
         </Routes>

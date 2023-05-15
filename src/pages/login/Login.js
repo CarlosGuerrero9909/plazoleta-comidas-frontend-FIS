@@ -51,7 +51,7 @@ const Login = (props) => {
   return (
     <div className="auth-form-container">
       <h2>Login</h2>
-      <form className="login-form" onSubmit={handleLogin}>
+      <form className="general-form" onSubmit={handleLogin}>
         <label htmlFor="email">email</label>
         <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="youremail@gmail.com" id="email" name="email" />
         <label htmlFor="password">password</label>

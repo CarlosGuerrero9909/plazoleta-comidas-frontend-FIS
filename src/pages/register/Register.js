@@ -8,7 +8,7 @@ const Register = (props) => {
       password: '',
       direccion: '',
       celular: '',
-      rol: 'cliente'
+      rol: 'Cliente'
   })
 
   const handleChange = (e) => {
@@ -20,6 +20,18 @@ const Register = (props) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    sendRegister()
+    setUsuario({
+      fullName: '',
+      email: '',
+      password: '',
+      direccion: '',
+      celular: '',
+      rol: 'Cliente'
+    })
+  }
+
+  const sendRegister = async () => {
     const usuarioCliente = {
       fullName: usuario.fullName,
       email: usuario.email,
@@ -30,15 +42,15 @@ const Register = (props) => {
         celular: usuario.celular,
       }
     }
-    const data = await userService.create(usuarioCliente)
-    console.log(data)
+    const data = await userService.createCliente(usuarioCliente)
+    //console.log(data)
     return data
   }
 
   return (
     <div className="auth-form-container">
       <h2>Register</h2>
-      <form className="register-form" onSubmit={handleSubmit}>
+      <form className="general-form" onSubmit={handleSubmit}>
         <label htmlFor="fullName">Nombre completo</label>
         <input value={usuario.fullName} name="fullName" onChange={handleChange} id="fullName" placeholder="Your Full Name" required/>
         <label htmlFor="email">Email</label>
