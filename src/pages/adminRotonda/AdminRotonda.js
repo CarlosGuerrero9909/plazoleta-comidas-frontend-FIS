@@ -1,6 +1,6 @@
 import React from 'react';
 
-function AdminRotonda() {
+export default function AdminRotonda() {
   return (
     <div>
       AdminRotonda
@@ -8,5 +8,3 @@ function AdminRotonda() {
     </div>
   );
 }
-
-export default AdminRotonda;

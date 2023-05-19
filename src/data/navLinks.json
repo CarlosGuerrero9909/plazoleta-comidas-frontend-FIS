@@ -1,0 +1,24 @@
+[
+  {
+    "rol": "AdminRotonda",
+    "navLinks": [
+      { "title": "Registrar administrador", "path": "/RegistrarAdminRestaurante" },
+      { "title": "Registrar restaurante", "path": "/RegistrarRestaurante" },
+      { "title": "Registrar sede", "path": "/RegistrarSede" }
+    ]
+  },
+  {
+    "rol": "AdminRestaurante",
+    "navLinks": [
+      { "title": "Registrar menu", "path": "/RegistrarMenu" },
+      { "title": "Registrar producto", "path": "/RegistrarProducto" },
+      { "title": "Registrar producto compuesto", "path": "/RegistrarProductoCompuesto" }
+    ]
+  },
+  {
+    "rol": "Cliente",
+    "navLinks": [
+      { "title": "Carrito", "path": "/RegistrarAdminRestaurante" }
+    ]
+  }
+]

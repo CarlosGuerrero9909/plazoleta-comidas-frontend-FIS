@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-let baseURL = '/api/usuarios'
+const baseURL = '/api/usuarios'
 let token = null
 
 const setToken = newToken => {
@@ -8,19 +8,21 @@ const setToken = newToken => {
 }
 
 const createCliente = async (newObject) => {
-  baseURL = '/api/usuarios'
   const response = await axios.post(baseURL, newObject)
   return response.data
 }
 
 const createAdminRestaurante = async (newObject) => {
-  baseURL = '/api/usuarios/registrarAdminRestaurante'
-
   const config = {
     headers: { Authorization: token }
   }
 
-  const response = await axios.post(baseURL, newObject, config)
+  const response = await axios.post(`${baseURL}/registrarAdminRestaurante`, newObject, config)
+  return response.data
+}
+
+const consultarUsuarios = async () => {
+  const response = await axios.get(baseURL)
   return response.data
 }
 
@@ -28,5 +30,6 @@ const createAdminRestaurante = async (newObject) => {
 export default {
   createCliente,
   createAdminRestaurante,
+  consultarUsuarios,
   setToken
 }

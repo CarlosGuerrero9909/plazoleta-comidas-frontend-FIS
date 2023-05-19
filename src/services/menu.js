@@ -1,30 +1,30 @@
 import axios from 'axios'
 
-const baseURL = '/api/restaurantes'
+const baseURL = '/api/menus'
 let token = null
 
 const setToken = newToken => {
   token = `bearer ${newToken}`
 }
 
-const createRestaurante = async (newObject) => {
+const createMenu = async (newObject) => {
 
   const config = {
     headers: { Authorization: token }
   }
 
-  const response = await axios.post(`${baseURL}/registrarRestaurante`, newObject, config)
+  const response = await axios.post(`${baseURL}/registrarMenu`, newObject, config)
   return response.data
 }
 
-const consultarRestaurantes = async () => {
+const consultarMenus = async () => {
   const response = await axios.get(baseURL)
   return response.data
 }
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
-  createRestaurante,
-  consultarRestaurantes,
+  createMenu,
+  consultarMenus,
   setToken
 }
