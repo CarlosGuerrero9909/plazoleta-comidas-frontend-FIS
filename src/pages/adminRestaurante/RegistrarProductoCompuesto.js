@@ -26,6 +26,7 @@ export default function RegistrarProductoCompuesto() {
     nombre: '',
     clasificacion: '',
     precio: 0,
+    imagen: '',
     restauranteId: ''
   })
 
@@ -60,6 +61,7 @@ export default function RegistrarProductoCompuesto() {
       nombre: '',
       clasificacion: '',
       precio: 0,
+      imagen: '',
       restauranteId: ''
     })
   };
@@ -69,6 +71,7 @@ export default function RegistrarProductoCompuesto() {
       nombre: producto.nombre,
       clasificacion: producto.clasificacion,
       precio: producto.precio,
+      imagen: producto.imagen,
       productoCompuesto: {},
       restaurante: producto.restauranteId
     }
@@ -137,6 +140,17 @@ export default function RegistrarProductoCompuesto() {
                     label="Precio del producto"
                     name="precio"
                     value={producto.precio}
+                    onChange={handleChange}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    required
+                    fullWidth
+                    id="imagen-producto"
+                    label="Imagen del producto"
+                    name="imagen"
+                    value={producto.imagen}
                     onChange={handleChange}
                   />
                 </Grid>

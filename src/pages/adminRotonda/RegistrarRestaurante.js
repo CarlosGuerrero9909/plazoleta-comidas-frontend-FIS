@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 import userService from '../../services/users'
+import restaurantService from '../../services/restaurante'
 
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -32,7 +33,7 @@ export default function RegistrarRestaurante() {
     if (loggedUserJSON) {
       const user = loggedUserJSON
       setUser(user)
-      userService.setToken(user.token)
+      restaurantService.setToken(user.token)
     }
   }, [])
 
@@ -70,10 +71,10 @@ export default function RegistrarRestaurante() {
     const restauranteSend = {
       nombre: restaurante.nombre,
       especialidad: restaurante.especialidad,
-      idAdminRestaurante: restaurante.idAdminRestaurante,
+      adminRestaurante: restaurante.idAdminRestaurante,
     }
-    const data = await userService.createRestaurante(restauranteSend)
-    userService.setToken(user.token)
+    const data = await restaurantService.createRestaurante(restauranteSend)
+    restaurantService.setToken(user.token)
     //console.log(data)
     return data
   }

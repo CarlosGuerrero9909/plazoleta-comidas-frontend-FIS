@@ -33,23 +33,10 @@ const MenuProps = {
   },
 };
 
-const names = [
-  'Oliver Hansen',
-  'Van Henry',
-  'April Tucker',
-  'Ralph Hubbard',
-  'Omar Alexander',
-  'Carlos Abbott',
-  'Miriam Wagner',
-  'Bradley Wilkerson',
-  'Virginia Andrews',
-  'Kelly Snyder',
-];
-
-function getStyles(name, personName, theme) {
+function getStyles(productId, productsMenu, theme) {
   return {
     fontWeight:
-      personName.indexOf(name) === -1
+      productsMenu.indexOf(productId) === -1
         ? theme.typography.fontWeightRegular
         : theme.typography.fontWeightMedium,
   };
@@ -62,16 +49,17 @@ export default function RegistrarMenu() {
   const [menu, setMenu] = useState({
     nombre: '',
     productos: [],
+    imagen: '',
     restauranteId: ''
   })
   const theme = useTheme();
-  const [personName, setPersonName] = React.useState([]);
+  const [productsMenu, setProductsMenu] = React.useState([]);
 
   const handleChangeConf = (event) => {
     const {
       target: { value },
     } = event;
-    setPersonName(
+    setProductsMenu(
       // On autofill we get a stringified value.
       typeof value === 'string' ? value.split(',') : value,
     );
@@ -98,9 +86,10 @@ export default function RegistrarMenu() {
     productService
       .consultarProductos()
       .then(initialProducts => {
-        filtrarProductos(initialProducts)
+        const productosFilter = initialProducts.filter(producto => producto.restaurante === menu.restauranteId)
+        setProductosRest(productosFilter)
       })
-  }, [])
+  }, [menu.restauranteId])
 
   const filtrarRestaurantes = (initialRestarants) => {
     const adminId = JSON.parse(sessionStorage.getItem("usuario")).user.id
@@ -108,13 +97,10 @@ export default function RegistrarMenu() {
     setRestaurantes(restaurantesFind)
   }
 
-  const filtrarProductos = async (initialProducts) => {
-    const adminId = JSON.parse(sessionStorage.getItem("usuario")).user.id
-    const restaurantesDb = await restaurantService.consultarRestaurantes()
-    const restauranteId = restaurantesDb.find(restaurante => restaurante.id === adminId).id
-    const productosFind = initialProducts.filter(producto => producto.restaurante === restauranteId)
-    setProductosRest(productosFind)
-  }
+  /*const filtrarProductos = async (initialProducts) => {
+    const productosFilter = initialProducts.filter(producto => producto.restaurante === menu.restauranteId)
+    setProductosRest(productosFilter)
+  }*/
 
   const handleChange = (e) => {
     setMenu({
@@ -129,14 +115,22 @@ export default function RegistrarMenu() {
     setMenu({
       nombre: '',
       productos: [],
+      imagen: '',
       restauranteId: ''
     })
+    setProductsMenu([])
   };
 
   const sendRegister = async () => {
+    menu.productos = productsMenu.map(producto => {
+      const productFind = productosRest.find(p => p.nombre === producto)
+      return productFind.id
+    })
+
     const menuSend = {
       nombre: menu.nombre,
       productos: menu.productos,
+      imagen: menu.imagen,
       restaurante: menu.restauranteId
     }
     const data = await menuService.createMenu(menuSend)
@@ -197,16 +191,27 @@ export default function RegistrarMenu() {
                     </Select>
                   </FormControl>
                 </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    required
+                    fullWidth
+                    id="imagen-menu"
+                    label="Imagen del menu"
+                    name="imagen"
+                    value={menu.imagen}
+                    onChange={handleChange}
+                  />
+                </Grid>
                 <Grid item xs={12} >
                   <FormControl fullWidth required>
-                    <InputLabel id="demo-multiple-chip-label">Chip</InputLabel>
+                    <InputLabel id="demo-multiple-chip-label">Productos del menu</InputLabel>
                     <Select
                       labelId="demo-multiple-chip-label"
                       id="demo-multiple-chip"
                       multiple
-                      value={personName}
+                      value={productsMenu}
                       onChange={handleChangeConf}
-                      input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
+                      input={<OutlinedInput id="select-multiple-chip" label="Productos del menu" />}
                       renderValue={(selected) => (
                         <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
                           {selected.map((value) => (
@@ -216,13 +221,13 @@ export default function RegistrarMenu() {
                       )}
                       MenuProps={MenuProps}
                     >
-                      {names.map((name) => (
+                      {productosRest.map((producto) => (
                         <MenuItem
-                          key={name}
-                          value={name}
-                          style={getStyles(name, personName, theme)}
+                          key={producto.id}
+                          value={producto.nombre}
+                          style={getStyles(producto.id, productsMenu, theme)}
                         >
-                          {name}
+                          {producto.nombre}
                         </MenuItem>
                       ))}
                     </Select>
