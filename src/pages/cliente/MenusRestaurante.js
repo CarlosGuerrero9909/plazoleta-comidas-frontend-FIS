@@ -9,21 +9,27 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Footer from  "../../components/footer/Footer";
-import MenuCardWithoutLog from "../../components/cards/MenuCardWithoutLog";
+import MenuCard from "../../components/cards/MenuCard";
 
 
 const theme = createTheme();
 
-export default function MenusRestaurante(props) {
+export default function MenusRestaurante() {
   const [menus, setMenus] = useState([])
 
   useEffect(() => {
     menuService
       .consultarMenus()
       .then(initialMenus => {
-        setMenus(initialMenus)
+        filtrarMenus(initialMenus)
       })
   }, [])
+
+  const filtrarMenus = async(initialMenus) => {
+    const restauranteAcual = JSON.parse(localStorage.getItem('restauranteActual'))
+    const filterMenus = initialMenus.filter(menu => menu.restaurante.id === restauranteAcual.id)
+    setMenus(filterMenus)
+  }
 
   return (
     <ThemeProvider theme={theme}>
@@ -45,10 +51,10 @@ export default function MenusRestaurante(props) {
               color="text.primary"
               gutterBottom
             >
-              Menus que podras encontrar
+              Menus
             </Typography>
             <Typography variant="h5" align="center" color="text.secondary" paragraph>
-              Registrate y experimenta una forma increible de saciar tus mayores deseos
+              Una forma increible de saciar tus mayores deseos
             </Typography>
           </Container>
         </Box>
@@ -56,7 +62,7 @@ export default function MenusRestaurante(props) {
           <Grid container spacing={4}>
             {menus.map((menu) => (
               <Grid item key={menu.id} xs={12} sm={6} md={4}>
-                <MenuCardWithoutLog menu={menu}/>
+                <MenuCard menu={menu}/>
               </Grid>
             ))}
           </Grid>

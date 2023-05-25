@@ -80,9 +80,7 @@ export default function RegistrarProducto() {
       clasificacion: producto.clasificacion,
       precio: producto.precio,
       imagen: producto.imagen,
-      productoSimple: {
-        stock: producto.stock
-      },
+      stock: producto.stock,
       restaurante: producto.restauranteId
     }
     const data = await productService.createProducto(productoSend)

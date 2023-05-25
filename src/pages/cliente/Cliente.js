@@ -1,11 +1,9 @@
 import React from 'react';
 
-function Cliente() {
+export default function AdminRotonda() {
   return (
     <div>
       Cliente
     </div>
   );
 }
-
-export default Cliente;

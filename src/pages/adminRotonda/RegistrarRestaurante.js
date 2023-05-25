@@ -25,6 +25,8 @@ export default function RegistrarRestaurante() {
   const [restaurante, setRestaurante] = useState({
     nombre: '',
     especialidad: '',
+    logo: '',
+    banner: '',
     idAdminRestaurante: '',
   })
 
@@ -63,6 +65,8 @@ export default function RegistrarRestaurante() {
     setRestaurante({
       nombre: '',
       especialidad: '',
+      logo: '',
+      banner: '',
       idAdminRestaurante: '',
     })
   };
@@ -71,6 +75,8 @@ export default function RegistrarRestaurante() {
     const restauranteSend = {
       nombre: restaurante.nombre,
       especialidad: restaurante.especialidad,
+      logo: restaurante.logo,
+      banner: restaurante.banner,
       adminRestaurante: restaurante.idAdminRestaurante,
     }
     const data = await restaurantService.createRestaurante(restauranteSend)
@@ -121,6 +127,28 @@ export default function RegistrarRestaurante() {
                   value={restaurante.especialidad}
                   onChange={handleChange}
                 />
+              </Grid>
+              <Grid item xs={12}>
+                  <TextField
+                    required
+                    fullWidth
+                    id="logo-restaurante"
+                    label="Logo del restaurante"
+                    name="logo"
+                    value={restaurante.logo}
+                    onChange={handleChange}
+                  />
+              </Grid>
+              <Grid item xs={12}>
+                  <TextField
+                    required
+                    fullWidth
+                    id="banner-restaurante"
+                    label="Banner del restaurante"
+                    name="banner"
+                    value={restaurante.banner}
+                    onChange={handleChange}
+                  />
               </Grid>
               <Grid item xs={12}>
               </Grid>

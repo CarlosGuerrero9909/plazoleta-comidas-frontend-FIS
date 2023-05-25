@@ -14,7 +14,11 @@ import AdminRestaurante from './pages/adminRestaurante/AdminRestaurante'
 import RegistrarMenu from "./pages/adminRestaurante/RegistrarMenu";
 import RegistrarProducto from "./pages/adminRestaurante/RegistrarProducto";
 import Cliente from './pages/cliente/Cliente'
+import Restaurantes from './pages/cliente/Restaurantes'
+import MenusRestaurante from './pages/cliente/MenusRestaurante'
+import Carrito from "./pages/cliente/Carrito";
 import RegistrarProductoCompuesto from "./pages/adminRestaurante/RegistrarProductoCompuesto";
+
 
 function App() {
   const [logged, setLogged] = useState(false)
@@ -29,7 +33,7 @@ function App() {
         <NavBar logged={logged} setLogged={setLogged}/>
         <div className='App'>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home/>} />
           <Route path="/Login" element={<Login sesion={sesion} setLogged={setLogged}/>} />
           <Route path="/Register" element={<Register />} />
           <Route path='/AdminRotonda/*' element={<AdminRotonda />} />
@@ -41,6 +45,9 @@ function App() {
             <Route path="RegistrarProducto" element={<RegistrarProducto />} />
             <Route path="RegistrarProductoCompuesto" element={<RegistrarProductoCompuesto />} />
           <Route path='/Cliente/*' element={<Cliente />} />
+            <Route path="Restaurantes" element={<Restaurantes/>} />
+            <Route path="MenusRestaurante" element={<MenusRestaurante />} />
+            <Route path="Carrito" element={<Carrito />} />
         </Routes>
         </div>
       </Router> 
