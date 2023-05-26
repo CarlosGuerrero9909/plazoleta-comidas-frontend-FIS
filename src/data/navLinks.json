@@ -2,24 +2,86 @@
   {
     "rol": "AdminRotonda",
     "navLinks": [
-      { "title": "Registrar administrador", "path": "/RegistrarAdminRestaurante" },
-      { "title": "Registrar restaurante", "path": "/RegistrarRestaurante" },
-      { "title": "Registrar sede", "path": "/RegistrarSede" }
+      { 
+        "title": "Registrar administrador", 
+        "options": [
+          {
+            "optionName": "Registrar",
+            "path": "/RegistrarAdminRestaurante" 
+          }
+        ]   
+      },
+      { 
+        "title": "Registrar restaurante", 
+        "options": [
+          {
+            "optionName": "Registrar",
+            "path": "/RegistrarRestaurante" 
+          }
+        ]
+      },
+      { 
+        "title": "Registrar sede",
+        "options": [
+          {
+            "optionName": "Registrar",
+            "path": "/RegistrarSede" 
+          }
+        ] 
+      }
     ]
   },
   {
     "rol": "AdminRestaurante",
     "navLinks": [
-      { "title": "Registrar menu", "path": "/RegistrarMenu" },
-      { "title": "Registrar producto", "path": "/RegistrarProducto" },
-      { "title": "Registrar producto compuesto", "path": "/RegistrarProductoCompuesto" }
+      { 
+        "title": "Menu",
+        "options": [
+          {
+            "optionName": "Registrar",
+            "path": "/RegistrarMenu" 
+          }
+        ]  
+      },
+      { 
+        "title": "Producto simple", 
+        "options": [
+          {
+            "optionName": "Registrar",
+            "path": "/RegistrarProducto" 
+          },
+          {
+            "optionName": "Actualizar",
+            "path": "/ActualizarProducto" 
+          },
+          {
+            "optionName": "Eliminar",
+            "path": "/EliminarProducto" 
+          }
+        ] 
+      },
+      { 
+        "title": "Producto compuesto", 
+        "options": [
+          {
+            "optionName": "Registrar",
+            "path": "/RegistrarProductoCompuesto" 
+          }
+        ]   
+      }
     ]
   },
   {
     "rol": "Cliente",
     "navLinks": [
-      { "title": "Carrito", "path": "/Carrito" },
-      { "title": "Restaurantes", "path": "/Restaurantes" }
+      { 
+        "title": "Carrito", 
+        "path": "/Carrito" 
+      },
+      { 
+        "title": "Restaurantes", 
+        "path": "/Restaurantes" 
+      }
     ]
   }
 ]

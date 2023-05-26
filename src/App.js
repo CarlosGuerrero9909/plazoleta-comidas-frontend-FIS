@@ -13,6 +13,8 @@ import RegistrarSede from "./pages/adminRotonda/RegistrarSede";
 import AdminRestaurante from './pages/adminRestaurante/AdminRestaurante'
 import RegistrarMenu from "./pages/adminRestaurante/RegistrarMenu";
 import RegistrarProducto from "./pages/adminRestaurante/RegistrarProducto";
+import ActualizarProducto from "./pages/adminRestaurante/ActualizarProducto";
+import EliminarProducto from "./pages/adminRestaurante/EliminarProducto";
 import Cliente from './pages/cliente/Cliente'
 import Restaurantes from './pages/cliente/Restaurantes'
 import MenusRestaurante from './pages/cliente/MenusRestaurante'
@@ -43,6 +45,8 @@ function App() {
           <Route path='/AdminRestaurante/*' element={<AdminRestaurante />} />
             <Route path="RegistrarMenu" element={<RegistrarMenu />} />
             <Route path="RegistrarProducto" element={<RegistrarProducto />} />
+            <Route path="ActualizarProducto" element={<ActualizarProducto />} />
+            <Route path="EliminarProducto" element={<EliminarProducto />} />
             <Route path="RegistrarProductoCompuesto" element={<RegistrarProductoCompuesto />} />
           <Route path='/Cliente/*' element={<Cliente />} />
             <Route path="Restaurantes" element={<Restaurantes/>} />
