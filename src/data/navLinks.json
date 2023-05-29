@@ -75,10 +75,6 @@
     "rol": "Cliente",
     "navLinks": [
       { 
-        "title": "Carrito", 
-        "path": "/Carrito" 
-      },
-      { 
         "title": "Restaurantes", 
         "path": "/Restaurantes" 
       }

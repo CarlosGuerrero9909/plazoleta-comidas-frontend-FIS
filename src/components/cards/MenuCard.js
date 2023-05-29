@@ -1,4 +1,4 @@
-import * as React from "react";
+import {useState} from "react";
 
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
@@ -6,12 +6,14 @@ import CardHeader from '@mui/material/CardHeader';
 import CardActions from "@mui/material/CardActions";
 import Avatar from '@mui/material/Avatar';
 import IconButton from "@mui/material/IconButton";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Collapse from '@mui/material/Collapse';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
+import { useCart } from "../../hooks/useCart";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -25,16 +27,18 @@ const ExpandMore = styled((props) => {
 }));
 
 export default function MenuCard(props) {
+  const [expanded, setExpanded] = useState(false);
+  const {cart, addToCart, removeFromCart} = useCart()
 
-  const [expanded, setExpanded] = React.useState(false);
+  const checkMenuIncart = (menu) => {
+    return cart.some(item => item.id === menu.id)
+  }
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
-  const handleClick = () => {
-    console.log("hi")
-  }
+  const isMenuInCart = checkMenuIncart(props.menu)
 
   return (
     <Card sx={{ maxWidth: 345 }}>
@@ -55,11 +59,20 @@ export default function MenuCard(props) {
         alt={`${props.menu.imagen} menu`}
       />
       <CardActions disableSpacing>
-        <IconButton 
-          onClick={handleClick}
+        <IconButton
+          style={{ backgroundColor: isMenuInCart ? '#f44336' : '#2196f3' }}
+          onClick={() => {
+            isMenuInCart
+              ? removeFromCart(props.menu)
+              : addToCart(props.menu)
+          }}
           aria-label="add to favorites"
         >
-          <ShoppingCartIcon />
+        {
+          isMenuInCart
+            ? <RemoveShoppingCartIcon/>
+            : <AddShoppingCartIcon />
+        }
         </IconButton>
         <ExpandMore
           expand={expanded}

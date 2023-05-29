@@ -50,8 +50,7 @@ function App() {
             <Route path="RegistrarProductoCompuesto" element={<RegistrarProductoCompuesto />} />
           <Route path='/Cliente/*' element={<Cliente />} />
             <Route path="Restaurantes" element={<Restaurantes/>} />
-            <Route path="MenusRestaurante" element={<MenusRestaurante />} />
-            <Route path="Carrito" element={<Carrito />} />
+            <Route path="MenusRestaurante" element={<MenusRestaurante />}/>
         </Routes>
         </div>
       </Router> 
