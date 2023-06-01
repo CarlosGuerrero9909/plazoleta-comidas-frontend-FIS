@@ -11,6 +11,8 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import RestauranteCard from "../../components/cards/RestaurantCard";
 import Footer from "../../components/footer/Footer";
+import Carrito from '../cliente/Carrito'
+import { CartProvider } from "../../context/carrito";
 
 
 const theme = createTheme();
@@ -43,51 +45,54 @@ export default function Restaurantes(props) {
   }
 
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <main>
-        {/* Hero unit */}
-        <Box
-          sx={{
-            bgcolor: 'background.paper',
-            pt: 8,
-            pb: 6,
-          }}
-        >
-          <Container maxWidth="sm">
-            <Typography
-              component="h1"
-              variant="h2"
-              align="center"
-              color="text.primary"
-              gutterBottom
-            >
-              Rotonda de comidas
-            </Typography>
-            <Typography variant="h5" align="center" color="text.secondary" paragraph>
-              Una forma increible de saciar tus mayores deseos
-            </Typography>
-            <TextField
-              id="filled-basic"
-              label="Nombre del restaurante que desea"
-              variant="filled"
-              fullWidth
-              value={textoBusqueda}
-              onChange={handleChange}
-            />
+    <CartProvider>
+      <ThemeProvider theme={theme}>
+        <Carrito />
+        <CssBaseline />
+        <main>
+          {/* Hero unit */}
+          <Box
+            sx={{
+              bgcolor: 'background.paper',
+              pt: 8,
+              pb: 6,
+            }}
+          >
+            <Container maxWidth="sm">
+              <Typography
+                component="h1"
+                variant="h2"
+                align="center"
+                color="text.primary"
+                gutterBottom
+              >
+                Rotonda de comidas
+              </Typography>
+              <Typography variant="h5" align="center" color="text.secondary" paragraph>
+                Una forma increible de saciar tus mayores deseos
+              </Typography>
+              <TextField
+                id="filled-basic"
+                label="Nombre del restaurante que desea"
+                variant="filled"
+                fullWidth
+                value={textoBusqueda}
+                onChange={handleChange}
+              />
+            </Container>
+          </Box>
+          <Container sx={{ py: 8 }} maxWidth="md">
+            <Grid container spacing={4}>
+              {restaurantes.map((restaurante) => (
+                <Grid item key={restaurante.id} xs={12} sm={6} md={4}>
+                  <RestauranteCard restaurante={restaurante} />
+                </Grid>
+              ))}
+            </Grid>
           </Container>
-        </Box>
-        <Container sx={{ py: 8 }} maxWidth="md">
-          <Grid container spacing={4}>
-            {restaurantes.map((restaurante) => (
-              <Grid item key={restaurante.id} xs={12} sm={6} md={4}>
-                <RestauranteCard restaurante={restaurante} />
-              </Grid>
-            ))}
-          </Grid>
-        </Container>
-      </main>
-      <Footer />
-    </ThemeProvider>
+        </main>
+        <Footer />
+      </ThemeProvider>
+    </CartProvider>
   );
 }

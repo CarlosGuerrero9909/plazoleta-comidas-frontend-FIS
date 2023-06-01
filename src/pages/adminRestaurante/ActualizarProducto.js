@@ -8,6 +8,8 @@ import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import CardMedia from '@mui/material/CardMedia';
 import BakeryDiningIcon from '@mui/icons-material/BakeryDining';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
@@ -30,6 +32,7 @@ export default function ActualizarProducto() {
     precio: 0,
     imagen: ''
   })
+  const [productoImg, setProductoImg] = useState('');
 
   useEffect(() => {
     const loggedUserJSON = JSON.parse(sessionStorage.getItem('usuario'))
@@ -57,10 +60,14 @@ export default function ActualizarProducto() {
       })
   }, [restauranteId])
 
-  /*useEffect(() => {
-    const productoFind = productos.find(producto => productoId === producto.id)
-    setProducto(productoFind)
-  }, [productos, productoId])*/
+  useEffect(() => {
+    productService
+      .consultarProductos()
+      .then(initialProducts => {
+        const productFind = initialProducts.find(producto => producto.id === productoId)
+        setProductoImg(productFind.imagen)
+      })
+  }, [productoId])
 
   const filtrarRestaurantes = (initialRestarants) => {
     const adminId = JSON.parse(sessionStorage.getItem("usuario")).user.id
@@ -159,6 +166,20 @@ export default function ActualizarProducto() {
                     </Select>
                   </FormControl>
                 </Grid>
+                {
+                  productoId !== '' ? 
+                  <Grid item>
+                    <Card sx={{ maxWidth: 345 }}>
+                      <CardMedia
+                        component="img"
+                        alt={"producto a actualizar"}
+                        height="140"
+                        image={productoImg}
+                      />
+                    </Card>
+                  </Grid> :
+                  false
+                }
                 <Typography paragraph>
                   A continuacion cambie los campos que desea actualizar
                 </Typography>

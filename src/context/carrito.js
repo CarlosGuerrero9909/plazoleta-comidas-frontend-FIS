@@ -1,46 +1,39 @@
-import { createContext, useState } from "react";
+import { createContext, useReducer, useState } from "react";
+import { cartReducer, cartInitialState } from "../reducers/carritoReducer";
 
 //1. Crear contexto
 export const CartContext = createContext()
 
+function useCartReducer() {
+  // dispatch sends the actions to reducer
+  const [state, dispatch] = useReducer(cartReducer, cartInitialState)
+
+  const addToCart = menu => dispatch({
+    type: 'ADD_TO_CART',
+    payload: menu
+  })
+
+  const removeFromCart = menu => dispatch({
+    type: 'REMOVE_FROM_CART',
+    payload: menu
+  })
+
+  const clearCart = () => dispatch({
+    type: 'CLEAR_CART'
+  })
+
+  return {state, addToCart, removeFromCart, clearCart}
+}
+
 //2. crear provider
 export function CartProvider({ children }) {
-  const [cart, setCart] = useState([])
-
-  const addToCart = menu => {
-    // We should check if product is already in cart
-    const productInCartIndex = cart.findIndex(item => item.id === menu.id)
-
-    if (productInCartIndex >= 0) {
-      //if product is already in cart, then we create a clone of cart
-      const newCart = structuredClone(cart)
-      newCart[productInCartIndex].quantity += 1
-      return setCart(newCart)
-    }
-
-    //product there is not in the cart
-    setCart(prevState => ([
-      ...prevState,
-      {
-        ...menu,
-        quantity: 1
-      }
-    ]))
-  }
-
-  const removeFromCart = (menu) => {
-    setCart(prevState => prevState.filter(item => item.id !== menu.id))
-  }
-
-  const clearCart = () => {
-    setCart([])
-  }
+  const {state, addToCart, removeFromCart, clearCart} = useCartReducer()
 
   return (
     <CartContext.Provider 
       value={
         {
-          cart,
+          cart: state,
           addToCart,
           removeFromCart,
           clearCart
@@ -51,3 +44,8 @@ export function CartProvider({ children }) {
     </CartContext.Provider>
   )
 }
+
+//useReducer is better because we extract the logic of update a state in only a function
+//useReducer is a good practice
+//for testing the update of a state is better useREducer
+//useReducer is utility when we have multiple states in a component

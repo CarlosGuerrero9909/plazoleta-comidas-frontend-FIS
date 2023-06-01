@@ -18,9 +18,7 @@ import EliminarProducto from "./pages/adminRestaurante/EliminarProducto";
 import Cliente from './pages/cliente/Cliente'
 import Restaurantes from './pages/cliente/Restaurantes'
 import MenusRestaurante from './pages/cliente/MenusRestaurante'
-import Carrito from "./pages/cliente/Carrito";
 import RegistrarProductoCompuesto from "./pages/adminRestaurante/RegistrarProductoCompuesto";
-
 
 function App() {
   const [logged, setLogged] = useState(false)
@@ -48,8 +46,8 @@ function App() {
             <Route path="ActualizarProducto" element={<ActualizarProducto />} />
             <Route path="EliminarProducto" element={<EliminarProducto />} />
             <Route path="RegistrarProductoCompuesto" element={<RegistrarProductoCompuesto />} />
-          <Route path='/Cliente/*' element={<Cliente />} />
-            <Route path="Restaurantes" element={<Restaurantes/>} />
+          <Route path='/Cliente/*' element={<Cliente/>} />
+            <Route path="Restaurantes" element={<Restaurantes />}/>
             <Route path="MenusRestaurante" element={<MenusRestaurante />}/>
         </Routes>
         </div>

@@ -1,6 +1,8 @@
-import { useId } from 'react';
+import { useId, useEffect, useState } from 'react';
+import transService from '../../services/transaccion'
 import './Carrito.css'
 
+import Button from '@mui/material/Button';
 import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useCart } from '../../hooks/useCart';
@@ -27,8 +29,28 @@ function CartItem ({ imagen, precioTotal, nombre, quantity, addToCart }) {
 }
 
 export default function Cart() {
+  const [user, setUser] = useState({})
   const cartCheckboxId = useId()
   const { cart, clearCart, addToCart } = useCart()
+
+  useEffect(() => {
+    const loggedUserJSON = JSON.parse(sessionStorage.getItem('usuario'))
+    if (loggedUserJSON) {
+      const user = loggedUserJSON
+      setUser(user)
+      transService.setToken(user.token)
+    }
+  }, [])
+
+  const handleClickTransaction = async () => {
+    const cartSend = cart
+    const dispResponse = await transService.consultarDisponibilidad(cartSend)
+    const pagoResponse = await transService.hacerPago()
+    console.log(dispResponse)
+    console.log(pagoResponse)
+    alert(`Hay diponibilidad: ${dispResponse.resultado} su pago fue ${pagoResponse.resultado}`)
+    clearCart()
+  }
 
   return (
     <>
@@ -51,6 +73,9 @@ export default function Cart() {
         <button onClick={clearCart}>
           <RemoveShoppingCartIcon />
         </button>
+        <Button onClick={handleClickTransaction} variant="contained" color="success">
+          Comprar
+        </Button>
       </aside>
     </>
   )
